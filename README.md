@@ -1,15 +1,14 @@
-# app-__APPNAME__
+# app-mgr-services
 
-__APP_DESCRIPTION__
+Application descriptor for the FOLIO manager services.
+
+`app-mgr-services` is a `platform`-scoped application. It bundles the manager-service module descriptors, so that
+they are validated like any other application.
 
 ## Modules
 
-| Module name       |
-|:------------------|
-| `mod-__APPNAME__` |
-
-## UI Modules
-
-| Module name         |
-|:--------------------|
-| `folio___APPNAME__` |
+| Module name               |
+|:--------------------------|
+| `mgr-applications`        |
+| `mgr-tenants`             |
+| `mgr-tenant-entitlements` |

@@ -2,23 +2,20 @@
   "name": "${project.name}",
   "version": "${project.version}",
   "description": "${project.description}",
-  "dependencies": [
-    {
-      "name": "__DEPENDENCY_APP_NAME__",
-      "version": "__^SEMVER__",
-      "preRelease": "only"
-    }
-  ],
+  "scope": "platform",
   "modules": [
     {
-      "name": "__MODULE_NAME__",
+      "name": "mgr-applications",
       "version": "latest",
       "preRelease": "only"
-    }
-  ],
-  "uiModules": [
+    },
     {
-      "name": "__UI_MODULE_NAME__",
+      "name": "mgr-tenants",
+      "version": "latest",
+      "preRelease": "only"
+    },
+    {
+      "name": "mgr-tenant-entitlements",
       "version": "latest",
       "preRelease": "only"
     }
