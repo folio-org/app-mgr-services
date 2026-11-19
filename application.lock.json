@@ -1,0 +1,618 @@
+{
+  "id" : "app-mgr-services-1.0.0-SNAPSHOT.100200000000001",
+  "name" : "app-mgr-services",
+  "version" : "1.0.0-SNAPSHOT.100200000000001",
+  "description" : "Application descriptor for the FOLIO manager services",
+  "scope" : "platform",
+  "modules" : [ {
+    "id" : "mgr-applications-4.1.0-SNAPSHOT.2489",
+    "name" : "mgr-applications",
+    "version" : "4.1.0-SNAPSHOT.2489"
+  }, {
+    "id" : "mgr-tenants-4.1.0-SNAPSHOT.2275",
+    "name" : "mgr-tenants",
+    "version" : "4.1.0-SNAPSHOT.2275"
+  }, {
+    "id" : "mgr-tenant-entitlements-4.1.0-SNAPSHOT.2622",
+    "name" : "mgr-tenant-entitlements",
+    "version" : "4.1.0-SNAPSHOT.2622"
+  } ],
+  "uiModules" : [ ],
+  "dependencies" : [ ],
+  "moduleDescriptors" : [ {
+    "id" : "mgr-applications-4.1.0-SNAPSHOT.2489",
+    "name" : "Manager Applications",
+    "requires" : [ ],
+    "provides" : [ {
+      "id" : "applications",
+      "version" : "1.3",
+      "handlers" : [ {
+        "methods" : [ "POST" ],
+        "pathPattern" : "/applications",
+        "type" : "internal",
+        "permissionsRequired" : [ "mgr-applications.applications.item.post" ]
+      }, {
+        "methods" : [ "GET" ],
+        "pathPattern" : "/applications",
+        "type" : "internal",
+        "permissionsRequired" : [ "mgr-applications.applications.collection.get" ]
+      }, {
+        "methods" : [ "GET" ],
+        "pathPattern" : "/applications/{id}",
+        "type" : "internal",
+        "permissionsRequired" : [ "mgr-applications.applications.item.get" ]
+      }, {
+        "methods" : [ "DELETE" ],
+        "pathPattern" : "/applications/{id}",
+        "type" : "internal",
+        "permissionsRequired" : [ "mgr-applications.applications.item.delete" ],
+        "modulePermissions" : [ "mgr-tenant-entitlements.entitlements.collection.get" ]
+      }, {
+        "methods" : [ "POST" ],
+        "pathPattern" : "/applications/cleanup",
+        "type" : "internal",
+        "permissionsRequired" : [ "mgr-applications.applications.collection.cleanup" ],
+        "modulePermissions" : [ "mgr-tenant-entitlements.entitlements.collection.get" ]
+      }, {
+        "methods" : [ "POST" ],
+        "pathPattern" : "/applications/validate",
+        "type" : "internal",
+        "permissionsRequired" : [ "mgr-applications.applications.item.validate" ]
+      }, {
+        "methods" : [ "POST" ],
+        "pathPattern" : "/applications/validate-interfaces",
+        "type" : "internal",
+        "permissionsRequired" : [ "mgr-applications.applications.collection.validate-interfaces" ]
+      }, {
+        "methods" : [ "POST" ],
+        "pathPattern" : "/applications/validate-descriptors",
+        "type" : "internal",
+        "permissionsRequired" : [ "mgr-applications.applications.collection.validate-descriptors" ]
+      }, {
+        "methods" : [ "POST" ],
+        "pathPattern" : "/applications/validate-dependencies",
+        "type" : "internal",
+        "permissionsRequired" : [ "mgr-applications.applications.collection.validate-dependencies" ]
+      } ]
+    }, {
+      "id" : "discoveries",
+      "version" : "2.1",
+      "handlers" : [ {
+        "methods" : [ "GET" ],
+        "pathPattern" : "/applications/discovery",
+        "type" : "internal",
+        "permissionsRequired" : [ "mgr-applications.app-discoveries.collection.get" ]
+      }, {
+        "methods" : [ "GET" ],
+        "pathPattern" : "/applications/{id}/discovery",
+        "type" : "internal",
+        "permissionsRequired" : [ "mgr-applications.app-discoveries.item.get" ]
+      }, {
+        "methods" : [ "GET" ],
+        "pathPattern" : "/modules/discovery",
+        "type" : "internal",
+        "permissionsRequired" : [ "mgr-applications.discoveries.collection.get" ]
+      }, {
+        "methods" : [ "GET" ],
+        "pathPattern" : "/modules/{id}/discovery",
+        "type" : "internal",
+        "permissionsRequired" : [ "mgr-applications.discoveries.item.get" ]
+      }, {
+        "methods" : [ "POST" ],
+        "pathPattern" : "/modules/{id}/discovery",
+        "type" : "internal",
+        "permissionsRequired" : [ "mgr-applications.discoveries.item.post" ]
+      }, {
+        "methods" : [ "POST" ],
+        "pathPattern" : "/modules/discovery",
+        "type" : "internal",
+        "permissionsRequired" : [ "mgr-applications.discoveries.collection.post" ]
+      }, {
+        "methods" : [ "PUT" ],
+        "pathPattern" : "/modules/{id}/discovery",
+        "type" : "internal",
+        "permissionsRequired" : [ "mgr-applications.discoveries.item.put" ]
+      }, {
+        "methods" : [ "DELETE" ],
+        "pathPattern" : "/modules/{id}/discovery",
+        "type" : "internal",
+        "permissionsRequired" : [ "mgr-applications.discoveries.item.delete" ]
+      } ]
+    }, {
+      "id" : "module-bootstraps",
+      "version" : "1.3",
+      "handlers" : [ {
+        "methods" : [ "GET" ],
+        "pathPattern" : "/modules/{id}",
+        "type" : "internal",
+        "permissionsRequired" : [ "mgr-applications.module-bootstraps.item.get" ]
+      }, {
+        "methods" : [ "GET" ],
+        "pathPattern" : "/modules/{id}/bootstrap",
+        "type" : "internal",
+        "permissionsRequired" : [ "mgr-applications.module-bootstraps.item.get" ]
+      }, {
+        "methods" : [ "POST" ],
+        "pathPattern" : "/modules/{id}/bootstrap",
+        "type" : "internal",
+        "permissionsRequired" : [ "mgr-applications.module-bootstraps.item.post" ]
+      } ]
+    } ],
+    "permissionSets" : [ {
+      "permissionName" : "mgr-applications.applications.item.post",
+      "displayName" : "Manager Applications - create application",
+      "description" : "Register a new application"
+    }, {
+      "permissionName" : "mgr-applications.applications.item.validate",
+      "displayName" : "Manager Applications - validate application",
+      "description" : "Validate a new application descriptor"
+    }, {
+      "permissionName" : "mgr-applications.applications.collection.validate-interfaces",
+      "displayName" : "Manager Applications - validate modules interfaces",
+      "description" : "Validate a modules interfaces for applications"
+    }, {
+      "permissionName" : "mgr-applications.applications.collection.validate-descriptors",
+      "displayName" : "Manager Applications - validate descriptors integrity",
+      "description" : "Validate descriptors integrity at application and interface levels"
+    }, {
+      "permissionName" : "mgr-applications.applications.collection.validate-dependencies",
+      "displayName" : "Manager Applications - validate application dependencies",
+      "description" : "Validate dependencies of applications"
+    }, {
+      "permissionName" : "mgr-applications.applications.item.delete",
+      "displayName" : "Manager Applications - delete application",
+      "description" : "De-register (delete) application"
+    }, {
+      "permissionName" : "mgr-applications.applications.item.get",
+      "displayName" : "Manager Applications - get application by id",
+      "description" : "Retrieve registered application"
+    }, {
+      "permissionName" : "mgr-applications.applications.collection.get",
+      "displayName" : "Manager Applications - get applications",
+      "description" : "Retrieve registered applications"
+    }, {
+      "permissionName" : "mgr-applications.applications.collection.cleanup",
+      "displayName" : "Manager Applications - cleanup applications",
+      "description" : "Cleanup unused application descriptors",
+      "subPermissions" : [ "mgr-tenant-entitlements.entitlements.collection.get" ]
+    }, {
+      "permissionName" : "mgr-applications.discoveries.collection.post",
+      "displayName" : "Manager Applications - create discoveries",
+      "description" : "Register new module discoveries for application"
+    }, {
+      "permissionName" : "mgr-applications.discoveries.item.put",
+      "displayName" : "Manager Applications - update discovery",
+      "description" : "Update module discovery for application"
+    }, {
+      "permissionName" : "mgr-applications.discoveries.collection.put",
+      "displayName" : "Manager Applications - update discoveries",
+      "description" : "Update module discoveries for application"
+    }, {
+      "permissionName" : "mgr-applications.discoveries.item.delete",
+      "displayName" : "Manager Applications - delete discovery",
+      "description" : "De-register (delete) module discovery for application"
+    }, {
+      "permissionName" : "mgr-applications.discoveries.collection.delete",
+      "displayName" : "Manager Applications - delete discoveries",
+      "description" : "De-register (delete) module discoveries for application"
+    }, {
+      "permissionName" : "mgr-applications.discoveries.item.get",
+      "displayName" : "Manager Applications - get discovery by module id",
+      "description" : "Get module discovery for module"
+    }, {
+      "permissionName" : "mgr-applications.discoveries.collection.get",
+      "displayName" : "Manager Applications - search discovery information for modules",
+      "description" : "Search module discoveries by CQL query"
+    }, {
+      "permissionName" : "mgr-applications.app-discoveries.collection.get",
+      "displayName" : "Manager Applications - retrieve discovery information for applications",
+      "description" : "Get module discoveries for application"
+    }, {
+      "permissionName" : "mgr-applications.app-discoveries.item.get",
+      "displayName" : "Manager Applications - retrieve discovery information for an application",
+      "description" : "Get module discoveries for application"
+    }, {
+      "permissionName" : "mgr-applications.module-bootstraps.item.get",
+      "displayName" : "Manager Applications - get module bootstrap",
+      "description" : "Get module bootstrap"
+    }, {
+      "permissionName" : "mgr-applications.module-bootstraps.item.post",
+      "displayName" : "Manager Applications - post module bootstrap",
+      "description" : "Post module bootstrap"
+    }, {
+      "permissionName" : "mgr-applications.applications.all",
+      "displayName" : "Manager Applications - Manage applications",
+      "description" : "Manage applications",
+      "subPermissions" : [ "mgr-applications.applications.item.post", "mgr-applications.applications.item.validate", "mgr-applications.applications.collection.validate-interfaces", "mgr-applications.applications.collection.validate-descriptors", "mgr-applications.applications.collection.validate-dependencies", "mgr-applications.applications.item.get", "mgr-applications.applications.item.delete", "mgr-applications.applications.collection.get", "mgr-applications.applications.collection.cleanup" ],
+      "visible" : true
+    }, {
+      "permissionName" : "mgr-applications.discoveries.all",
+      "displayName" : "Manager Applications - Manage module discoveries",
+      "description" : "Manage module discoveries",
+      "subPermissions" : [ "mgr-applications.discoveries.item.get", "mgr-applications.discoveries.item.post", "mgr-applications.discoveries.item.put", "mgr-applications.discoveries.item.delete", "mgr-applications.discoveries.collection.post", "mgr-applications.discoveries.collection.get", "mgr-applications.app-discoveries.collection.get", "mgr-applications.app-discoveries.item.get" ],
+      "visible" : true
+    }, {
+      "permissionName" : "mgr-applications.readonly",
+      "displayName" : "Manager Applications - Read only permissions",
+      "description" : "Manager Applications - Permissions with no side effects",
+      "subPermissions" : [ "mgr-applications.applications.item.get", "mgr-applications.applications.collection.get", "mgr-applications.discoveries.item.get", "mgr-applications.discoveries.collection.get", "mgr-applications.app-discoveries.collection.get", "mgr-applications.app-discoveries.item.get", "mgr-applications.module-bootstraps.item.get", "mgr-applications.module-bootstraps.item.post" ],
+      "visible" : true
+    }, {
+      "permissionName" : "mgr-applications.all",
+      "displayName" : "Manager Applications - All permissions",
+      "description" : "Manager Applications - Anything goes",
+      "subPermissions" : [ "mgr-applications.applications.all", "mgr-applications.discoveries.all", "mgr-applications.module-bootstraps.item.get", "mgr-applications.module-bootstraps.item.post" ],
+      "visible" : true
+    } ],
+    "producesEvents" : [ {
+      "event" : "mgr-applications.module.discovery.v1"
+    } ]
+  }, {
+    "id" : "mgr-tenants-4.1.0-SNAPSHOT.2275",
+    "name" : "Manager Tenants",
+    "requires" : [ ],
+    "provides" : [ {
+      "id" : "tenants",
+      "version" : "1.0",
+      "handlers" : [ {
+        "methods" : [ "POST" ],
+        "pathPattern" : "/tenants",
+        "type" : "internal",
+        "permissionsRequired" : [ "mgr-tenants.tenants.item.post" ]
+      }, {
+        "methods" : [ "GET" ],
+        "pathPattern" : "/tenants",
+        "type" : "internal",
+        "permissionsRequired" : [ "mgr-tenants.tenants.collection.get" ]
+      }, {
+        "methods" : [ "GET" ],
+        "pathPattern" : "/tenants/{id}",
+        "type" : "internal",
+        "permissionsRequired" : [ "mgr-tenants.tenants.item.get" ]
+      }, {
+        "methods" : [ "DELETE" ],
+        "pathPattern" : "/tenants/{id}",
+        "type" : "internal",
+        "permissionsRequired" : [ "mgr-tenants.tenants.item.delete" ]
+      }, {
+        "methods" : [ "PUT" ],
+        "pathPattern" : "/tenants/{id}",
+        "type" : "internal",
+        "permissionsRequired" : [ "mgr-tenants.tenants.item.put" ]
+      } ]
+    }, {
+      "id" : "tenant-attributes",
+      "version" : "1.0",
+      "handlers" : [ {
+        "methods" : [ "POST" ],
+        "pathPattern" : "/tenants/{tenantId}/tenant-attributes",
+        "type" : "internal",
+        "permissionsRequired" : [ "mgr-tenants.tenant-attributes.collection.post" ]
+      }, {
+        "methods" : [ "GET" ],
+        "pathPattern" : "/tenants/{tenantId}/tenant-attributes",
+        "type" : "internal",
+        "permissionsRequired" : [ "mgr-tenants.tenant-attributes.collection.get" ]
+      }, {
+        "methods" : [ "PUT" ],
+        "pathPattern" : "/tenants/{tenantId}/tenant-attributes/{id}",
+        "type" : "internal",
+        "permissionsRequired" : [ "mgr-tenants.tenant-attributes.item.put" ]
+      }, {
+        "methods" : [ "DELETE" ],
+        "pathPattern" : "/tenants/{tenantId}/tenant-attributes/{id}",
+        "type" : "internal",
+        "permissionsRequired" : [ "mgr-tenants.tenant-attributes.item.delete" ]
+      }, {
+        "methods" : [ "GET" ],
+        "pathPattern" : "/tenants/{tenantId}/tenant-attributes/{id}",
+        "type" : "internal",
+        "permissionsRequired" : [ "mgr-tenants.tenant-attributes.item.get" ]
+      } ]
+    } ],
+    "permissionSets" : [ {
+      "permissionName" : "mgr-tenants.tenants.item.post",
+      "displayName" : "Manager Tenants - create a new tenant",
+      "description" : "Create a new tenant"
+    }, {
+      "permissionName" : "mgr-tenants.tenants.item.delete",
+      "displayName" : "Manager Tenants - delete a tenant",
+      "description" : "Remove a tenant"
+    }, {
+      "permissionName" : "mgr-tenants.tenants.item.put",
+      "displayName" : "Manager Tenants - update a tenant",
+      "description" : "Update a tenant"
+    }, {
+      "permissionName" : "mgr-tenants.tenants.collection.get",
+      "displayName" : "Manager Tenants - get tenants",
+      "description" : "Retrieve tenants"
+    }, {
+      "permissionName" : "mgr-tenants.tenants.item.get",
+      "displayName" : "Manager Tenants - get a tenant by id",
+      "description" : "Retrieve a tenant"
+    }, {
+      "permissionName" : "mgr-tenants.tenant-attributes.collection.post",
+      "displayName" : "Manager Tenants - create tenant attributes",
+      "description" : "Create or replace tenant-attributes associated with the specified tenant"
+    }, {
+      "permissionName" : "mgr-tenants.tenant-attributes.item.delete",
+      "displayName" : "Manager Tenants - delete tenant attribute",
+      "description" : "Delete tenant attribute"
+    }, {
+      "permissionName" : "mgr-tenants.tenant-attributes.collection.get",
+      "displayName" : "Manager Tenants - get tenant attributes",
+      "description" : "Retrieve tenant attributes"
+    }, {
+      "permissionName" : "mgr-tenants.tenant-attributes.item.get",
+      "displayName" : "Manager Tenants - get tenant attribute",
+      "description" : "Retrieve tenant attribute"
+    }, {
+      "permissionName" : "mgr-tenants.tenant-attributes.item.put",
+      "displayName" : "Manager Tenants - update tenant attribute",
+      "description" : "Update tenant attribute"
+    }, {
+      "permissionName" : "mgr-tenants.tenants.all",
+      "displayName" : "Manager Tenants - Manage tenants",
+      "description" : "Manage tenants",
+      "subPermissions" : [ "mgr-tenants.tenants.item.post", "mgr-tenants.tenants.item.get", "mgr-tenants.tenants.collection.get", "mgr-tenants.tenants.item.put", "mgr-tenants.tenants.item.delete" ],
+      "visible" : true
+    }, {
+      "permissionName" : "mgr-tenants.tenant-attributes.all",
+      "displayName" : "Manager Tenants - Manage tenant attributes",
+      "description" : "Manage tenant attributes",
+      "subPermissions" : [ "mgr-tenants.tenant-attributes.collection.post", "mgr-tenants.tenant-attributes.item.get", "mgr-tenants.tenant-attributes.collection.get", "mgr-tenants.tenant-attributes.item.put", "mgr-tenants.tenant-attributes.item.delete" ],
+      "visible" : true
+    }, {
+      "permissionName" : "mgr-tenants.readonly",
+      "displayName" : "Manager Tenants - Read only permissions",
+      "description" : "Manager Tenants - Permissions with no side effects",
+      "subPermissions" : [ "mgr-tenants.tenants.item.get", "mgr-tenants.tenants.collection.get", "mgr-tenants.tenant-attributes.item.get", "mgr-tenants.tenant-attributes.collection.get" ],
+      "visible" : true
+    }, {
+      "permissionName" : "mgr-tenants.all",
+      "displayName" : "Manager Tenants - All permissions",
+      "description" : "Manager Tenants - Anything goes",
+      "subPermissions" : [ "mgr-tenants.tenants.all", "mgr-tenants.tenant-attributes.all" ],
+      "visible" : true
+    } ]
+  }, {
+    "id" : "mgr-tenant-entitlements-4.1.0-SNAPSHOT.2622",
+    "name" : "Manager Tenant Entitlements",
+    "requires" : [ ],
+    "provides" : [ {
+      "id" : "entitlements",
+      "version" : "1.2",
+      "handlers" : [ {
+        "methods" : [ "POST" ],
+        "pathPattern" : "/entitlements",
+        "type" : "internal",
+        "permissionsRequired" : [ "mgr-tenant-entitlements.entitlements.item.post" ],
+        "modulePermissions" : [ "mgr-tenants.tenants.item.get", "mgr-tenants.tenants.collection.get", "mgr-applications.applications.collection.get", "mgr-applications.app-discoveries.collection.get", "mgr-applications.applications.item.validate" ]
+      }, {
+        "methods" : [ "PUT" ],
+        "pathPattern" : "/entitlements",
+        "type" : "internal",
+        "permissionsRequired" : [ "mgr-tenant-entitlements.entitlements.item.put" ],
+        "modulePermissions" : [ "mgr-tenants.tenants.item.get", "mgr-tenants.tenants.collection.get", "mgr-applications.applications.collection.get", "mgr-applications.app-discoveries.collection.get", "mgr-applications.applications.item.validate" ]
+      }, {
+        "methods" : [ "GET" ],
+        "pathPattern" : "/entitlements",
+        "type" : "internal",
+        "permissionsRequired" : [ "mgr-tenant-entitlements.entitlements.collection.get" ]
+      }, {
+        "methods" : [ "DELETE" ],
+        "pathPattern" : "/entitlements",
+        "type" : "internal",
+        "permissionsRequired" : [ "mgr-tenant-entitlements.entitlements.item.delete" ],
+        "modulePermissions" : [ "mgr-tenants.tenants.item.get", "mgr-tenants.tenants.collection.get", "mgr-applications.applications.collection.get", "mgr-applications.app-discoveries.collection.get", "mgr-applications.applications.item.validate" ]
+      }, {
+        "methods" : [ "POST" ],
+        "pathPattern" : "/entitlements/platform",
+        "type" : "internal",
+        "permissionsRequired" : [ "mgr-tenant-entitlements.entitlements.platform.item.post" ],
+        "modulePermissions" : [ "mgr-applications.applications.collection.get", "mgr-applications.applications.item.validate" ]
+      }, {
+        "methods" : [ "PUT" ],
+        "pathPattern" : "/entitlements/platform",
+        "type" : "internal",
+        "permissionsRequired" : [ "mgr-tenant-entitlements.entitlements.platform.item.put" ],
+        "modulePermissions" : [ "mgr-applications.applications.collection.get", "mgr-applications.applications.item.validate" ]
+      }, {
+        "methods" : [ "PUT" ],
+        "pathPattern" : "/entitlements/state",
+        "type" : "internal",
+        "permissionsRequired" : [ "mgr-tenant-entitlements.entitlements.state.item.put" ],
+        "modulePermissions" : [ "mgr-tenants.tenants.item.get", "mgr-tenants.tenants.collection.get", "mgr-applications.applications.collection.get", "mgr-applications.app-discoveries.collection.get", "mgr-applications.applications.item.validate" ]
+      }, {
+        "methods" : [ "GET" ],
+        "pathPattern" : "/entitlements/{tenantName}/applications",
+        "type" : "internal",
+        "permissionsRequired" : [ ]
+      }, {
+        "methods" : [ "POST" ],
+        "pathPattern" : "/entitlements/validate",
+        "type" : "internal",
+        "permissionsRequired" : [ "mgr-tenant-entitlements.entitlements.validate.post" ]
+      }, {
+        "methods" : [ "GET" ],
+        "pathPattern" : "/entitlements/modules/{moduleId}",
+        "type" : "internal",
+        "permissionsRequired" : [ "mgr-tenant-entitlements.entitlements.modules.item.get" ]
+      } ]
+    }, {
+      "id" : "entitlement-flows",
+      "version" : "1.0",
+      "handlers" : [ {
+        "methods" : [ "GET" ],
+        "pathPattern" : "/entitlement-flows",
+        "type" : "internal",
+        "permissionsRequired" : [ "mgr-tenant-entitlements.flows.collection.get" ]
+      }, {
+        "methods" : [ "GET" ],
+        "pathPattern" : "/entitlement-flows/{flowId}",
+        "type" : "internal",
+        "permissionsRequired" : [ "mgr-tenant-entitlements.flows.item.get" ]
+      }, {
+        "methods" : [ "GET" ],
+        "pathPattern" : "/entitlement-flows/{flowId}/applications/{applicationId}",
+        "type" : "internal",
+        "permissionsRequired" : [ "mgr-tenant-entitlements.flows.item.get" ]
+      }, {
+        "methods" : [ "GET" ],
+        "pathPattern" : "/entitlement-flows/{flowId}/applications/{applicationId}/stages",
+        "type" : "internal",
+        "permissionsRequired" : [ "mgr-tenant-entitlements.flows.stages.collection.get" ]
+      }, {
+        "methods" : [ "GET" ],
+        "pathPattern" : "/entitlement-flows/{flowId}/applications/{applicationId}/stages/{stageName}",
+        "type" : "internal",
+        "permissionsRequired" : [ "mgr-tenant-entitlements.flows.stages.item.get" ]
+      }, {
+        "methods" : [ "GET" ],
+        "pathPattern" : "/application-flows",
+        "type" : "internal",
+        "permissionsRequired" : [ "mgr-tenant-entitlements.flows.collection.get" ]
+      }, {
+        "methods" : [ "GET" ],
+        "pathPattern" : "/application-flows/{applicationFlowId}/stages",
+        "type" : "internal",
+        "permissionsRequired" : [ "mgr-tenant-entitlements.flows.stages.collection.get" ]
+      }, {
+        "methods" : [ "GET" ],
+        "pathPattern" : "/application-flows/{applicationFlowId}",
+        "type" : "internal",
+        "permissionsRequired" : [ "mgr-tenant-entitlements.flows.stages.collection.get" ]
+      }, {
+        "methods" : [ "GET" ],
+        "pathPattern" : "/application-flows/{applicationFlowId}/stages/{stageName}",
+        "type" : "internal",
+        "permissionsRequired" : [ "mgr-tenant-entitlements.flows.stages.item.get" ]
+      } ]
+    }, {
+      "id" : "reinstallations",
+      "version" : "1.0",
+      "handlers" : [ {
+        "methods" : [ "POST" ],
+        "pathPattern" : "/reinstall/applications",
+        "type" : "internal",
+        "permissionsRequired" : [ "mgr-tenant-entitlements.app-reinstallation.execute" ],
+        "modulePermissions" : [ "mgr-tenants.tenants.item.get" ]
+      }, {
+        "methods" : [ "POST" ],
+        "pathPattern" : "/reinstall/modules",
+        "type" : "internal",
+        "permissionsRequired" : [ "mgr-tenant-entitlements.module-reinstallation.execute" ],
+        "modulePermissions" : [ "mgr-tenants.tenants.item.get" ]
+      } ]
+    } ],
+    "permissionSets" : [ {
+      "permissionName" : "mgr-tenant-entitlements.entitlements.item.post",
+      "displayName" : "Manager Tenant Entitlements - install application",
+      "description" : "Installs/enables application for tenant"
+    }, {
+      "permissionName" : "mgr-tenant-entitlements.entitlements.item.put",
+      "displayName" : "Manager Tenant Entitlements - Upgrade application",
+      "description" : "Upgrades application(s) for tenant"
+    }, {
+      "permissionName" : "mgr-tenant-entitlements.entitlements.item.delete",
+      "displayName" : "Manager Tenant Entitlements - uninstall application",
+      "description" : "Delete an application installation from a tenant"
+    }, {
+      "permissionName" : "mgr-tenant-entitlements.entitlements.platform.item.post",
+      "displayName" : "Manager Tenant Entitlements - entitle platform applications",
+      "description" : "Entitles platform-scoped applications deployment-wide"
+    }, {
+      "permissionName" : "mgr-tenant-entitlements.entitlements.platform.item.put",
+      "displayName" : "Manager Tenant Entitlements - upgrade platform applications",
+      "description" : "Upgrades entitled versions of platform-scoped applications deployment-wide"
+    }, {
+      "permissionName" : "mgr-tenant-entitlements.entitlements.state.item.put",
+      "displayName" : "Manager Tenant Entitlements - desired state of application",
+      "description" : "Set the desired state of applications for tenant"
+    }, {
+      "permissionName" : "mgr-tenant-entitlements.entitlements.collection.get",
+      "displayName" : "Manager Tenant Entitlements - get tenants entitlements",
+      "description" : "Retrieve applications installed for tenants"
+    }, {
+      "permissionName" : "mgr-tenant-entitlements.flows.item.get",
+      "displayName" : "Manager Tenant Entitlements - get entitlement flow by id",
+      "description" : "Retrieve entitlement flow"
+    }, {
+      "permissionName" : "mgr-tenant-entitlements.flows.collection.get",
+      "displayName" : "Manager Tenant Entitlements - get entitlement flows",
+      "description" : "Retrieve entitlement flows"
+    }, {
+      "permissionName" : "mgr-tenant-entitlements.flows.stages.item.get",
+      "displayName" : "Manager Tenant Entitlements - get entitlement flow stage",
+      "description" : "Retrieve entitlement flow stage"
+    }, {
+      "permissionName" : "mgr-tenant-entitlements.flows.stages.collection.get",
+      "displayName" : "Manager Tenant Entitlements - get entitlement flow stages",
+      "description" : "Retrieve entitlement flow stages"
+    }, {
+      "permissionName" : "mgr-tenant-entitlements.entitlements.applications.collection.get",
+      "displayName" : "Manager Tenant Entitlements - get tenant applications",
+      "description" : "Retrieve entitled applications for a tenant"
+    }, {
+      "permissionName" : "mgr-tenant-entitlements.entitlements.validate.post",
+      "displayName" : "Manager Tenant Entitlements - validate entitlement request",
+      "description" : "Validate entitlement request"
+    }, {
+      "permissionName" : "mgr-tenant-entitlements.entitlements.modules.item.get",
+      "displayName" : "Manager Tenant Entitlements - get tenant entitlements by module",
+      "description" : "Retrieve applications installed for tenant by module"
+    }, {
+      "permissionName" : "mgr-tenant-entitlements.entitlements.all",
+      "displayName" : "Manager Tenant Entitlements - Manage tenant entitlements",
+      "description" : "Manage tenant entitlements",
+      "subPermissions" : [ "mgr-tenant-entitlements.entitlements.item.post", "mgr-tenant-entitlements.entitlements.item.put", "mgr-tenant-entitlements.entitlements.item.delete", "mgr-tenant-entitlements.entitlements.state.item.put", "mgr-tenant-entitlements.entitlements.platform.item.post", "mgr-tenant-entitlements.entitlements.platform.item.put", "mgr-tenant-entitlements.entitlements.collection.get" ],
+      "visible" : true
+    }, {
+      "permissionName" : "mgr-tenant-entitlements.flows.all",
+      "displayName" : "Manager Tenant Entitlements - Manage entitlement flows",
+      "description" : "Manage entitlement flows",
+      "subPermissions" : [ "mgr-tenant-entitlements.flows.item.get", "mgr-tenant-entitlements.flows.collection.get", "mgr-tenant-entitlements.flows.stages.item.get", "mgr-tenant-entitlements.flows.stages.collection.get" ],
+      "visible" : true
+    }, {
+      "permissionName" : "mgr-tenant-entitlements.readonly",
+      "displayName" : "Manager Tenant Entitlements - Read only permissions",
+      "description" : "Manager Tenant Entitlements - Permissions with no side effects",
+      "subPermissions" : [ "mgr-tenant-entitlements.entitlements.collection.get", "mgr-tenant-entitlements.entitlements.modules.item.get", "mgr-tenant-entitlements.flows.item.get", "mgr-tenant-entitlements.flows.collection.get", "mgr-tenant-entitlements.flows.stages.item.get", "mgr-tenant-entitlements.flows.stages.collection.get" ],
+      "visible" : true
+    }, {
+      "permissionName" : "mgr-tenant-entitlements.all",
+      "displayName" : "Manager Tenant Entitlements - All permissions",
+      "description" : "Manager Tenant Entitlements - Anything goes",
+      "subPermissions" : [ "mgr-tenant-entitlements.entitlements.all", "mgr-tenant-entitlements.flows.all", "mgr-tenant-entitlements.entitlements.applications.collection.get", "mgr-tenant-entitlements.entitlements.modules.item.get", "mgr-tenant-entitlements.entitlements.validate.post", "mgr-tenant-entitlements.reinstallation.all" ],
+      "visible" : true
+    }, {
+      "permissionName" : "mgr-tenant-entitlements.reinstallation.all",
+      "displayName" : "Manager Tenant Entitlements - Reinstallation",
+      "description" : "Manager Tenant Entitlements - Reinstallation",
+      "subPermissions" : [ "mgr-tenant-entitlements.app-reinstallation.execute", "mgr-tenant-entitlements.module-reinstallation.execute" ],
+      "visible" : true
+    }, {
+      "permissionName" : "mgr-tenant-entitlements.app-reinstallation.execute",
+      "displayName" : "Manager Tenant Entitlements - reinstall apps",
+      "description" : "Perform reinstallation for specified applications' modules"
+    }, {
+      "permissionName" : "mgr-tenant-entitlements.module-reinstallation.execute",
+      "displayName" : "Manager Tenant Entitlements - reinstall modules",
+      "description" : "Perform reinstallation for specified modules"
+    } ],
+    "producesEvents" : [ {
+      "event" : "mgr-tenant-entitlements.entitlement.v1"
+    }, {
+      "event" : "mgr-tenant-entitlements.system-user.v1"
+    }, {
+      "event" : "mgr-tenant-entitlements.capability.v1"
+    }, {
+      "event" : "mgr-tenant-entitlements.scheduled-job.v1"
+    } ],
+    "consumesEvents" : [ {
+      "event" : "mgr-tenant-entitlements.resource-result.v1",
+      "optional" : true
+    } ]
+  } ],
+  "uiModuleDescriptors" : [ ]
+}
