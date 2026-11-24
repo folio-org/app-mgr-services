@@ -1,13 +1,13 @@
 {
-  "id" : "app-mgr-services-1.0.0-SNAPSHOT.100200000000016",
+  "id" : "app-mgr-services-1.0.0-SNAPSHOT.100200000000018",
   "name" : "app-mgr-services",
-  "version" : "1.0.0-SNAPSHOT.100200000000016",
+  "version" : "1.0.0-SNAPSHOT.100200000000018",
   "description" : "Application descriptor for the FOLIO manager services",
   "scope" : "platform",
   "modules" : [ {
-    "id" : "mgr-tenant-entitlements-4.1.0-SNAPSHOT.2679",
+    "id" : "mgr-tenant-entitlements-4.1.0-SNAPSHOT.2698",
     "name" : "mgr-tenant-entitlements",
-    "version" : "4.1.0-SNAPSHOT.2679"
+    "version" : "4.1.0-SNAPSHOT.2698"
   }, {
     "id" : "mgr-applications-4.1.0-SNAPSHOT.2499",
     "name" : "mgr-applications",
@@ -376,7 +376,7 @@
       "visible" : true
     } ]
   }, {
-    "id" : "mgr-tenant-entitlements-4.1.0-SNAPSHOT.2679",
+    "id" : "mgr-tenant-entitlements-4.1.0-SNAPSHOT.2698",
     "name" : "Manager Tenant Entitlements",
     "requires" : [ ],
     "provides" : [ {
